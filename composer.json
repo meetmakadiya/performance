@@ -44,22 +44,15 @@
   },
   "scripts": {
     "format": "phpcbf --report-summary --report-source",
+    "format:all": [
+      "@format",
+      "npm run lint:php:plugins:fix"
+    ],
     "lint": "phpcs",
     "lint:all": [
       "@lint",
-      "@lint:auto-sizes",
-      "@lint:dominant-color-images",
-      "@lint:embed-optimizer",
-      "@lint:optimization-detective",
-      "@lint:speculation-rules",
-      "@lint:webp-uploads"
+      "npm run lint:php:plugins"
     ],
-    "lint:auto-sizes": "@lint -- ./plugins/auto-sizes --standard=./plugins/auto-sizes/phpcs.xml.dist",
-    "lint:dominant-color-images": "@lint -- ./plugins/dominant-color-images --standard=./plugins/dominant-color-images/phpcs.xml.dist",
-    "lint:embed-optimizer": "@lint -- ./plugins/embed-optimizer --standard=./plugins/embed-optimizer/phpcs.xml.dist",
-    "lint:optimization-detective": "@lint -- ./plugins/optimization-detective --standard=./plugins/optimization-detective/phpcs.xml.dist",
-    "lint:speculation-rules": "@lint -- ./plugins/speculation-rules --standard=./plugins/speculation-rules/phpcs.xml.dist",
-    "lint:webp-uploads": "@lint -- ./plugins/webp-uploads --standard=./plugins/webp-uploads/phpcs.xml.dist",
     "phpstan": "phpstan analyse --memory-limit=2048M",
     "test": "phpunit --verbose --testsuite performance-lab",
     "test-multisite": "phpunit -c tests/multisite.xml --verbose --testsuite performance-lab",
